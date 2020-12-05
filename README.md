@@ -35,10 +35,8 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-first of all, clone the project 
+## first of all, clone the project 
 ```
-mkdir P_WE_ML_docker
-cd P_WE_ML_docker
 git init
 git clone https://github.com/adlaneKadri/P_WE_ML_docker.git
 ```
