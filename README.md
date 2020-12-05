@@ -77,7 +77,9 @@ to run the frontend
 ```
 cd frontend
 python3 display_flask.py
+```
 > ON your browser : 
+```
 http://127.0.0.1:5000/
 ```
 
@@ -97,4 +99,46 @@ to run a machine learning model
 cd backend/ml_hub
 >choose your model (for example: decision tree)
 python3 decision_tre.py
+```
+
+
+#### dockerization of the project P_WE_ML
+> PS --> volumes:  use absolute path (-v all path of your folder)
+
+Web application 
+```
+cd frontend
+sudo docker build -t web:v1 . 
+
+sudo docker run -v /mypath_to_docker_project/P_WE_ML_docker/docker/models:/app/models -v /mypath_to_docker_project/P_WE_ML_docker/docker/utils_:/app/utils_ -p 5000:5000 web:v1
+```
+> ON your browser : 
+```
+http://127.0.0.1:5000/
+```
+
+Data preprocessing
+```
+cd backend/preprocessing
+
+sudo docker build -t processing:v1 . 
+
+sudo docker run -v /mypath_to_docker_project/P_WE_ML_docker/docker/backend/dataset:/app/dataset -v /mypath_to_docker_project/P_WE_ML_docker/docker/utils_:/app/utils_  processing:v1
+```
+
+Word embeding (for example tfidf)
+```
+cd backend/tfidf
+sudo docker build -t tfidf:v1 . 
+
+sudo docker run -v /mypath_to_docker_project/P_WE_ML_docker/docker/backend/dataset:/app/dataset -v /mypath_to_docker_project/P_WE_ML_docker/docker/models:/app/models  -v /mypath_to_docker_project/P_WE_ML_docker/docker/utils_:/app/utils_  tfidf:v1
+```
+
+Machine learning model (for example decision tree)
+```
+cd backend/ml_hub/decision_tree
+
+sudo docker build -t decision_tree:v1 . 
+
+sudo docker run -v /mypath_to_docker_project/P_WE_ML_docker/docker/backend/dataset:/app/dataset -v /mypath_to_docker_project/P_WE_ML_docker/docker/models:/app/models  -v /mypath_to_docker_project/P_WE_ML_docker/docker/utils_:/app/utils_  decision_tree:v1
 ```
