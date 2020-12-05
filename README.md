@@ -3,9 +3,31 @@ P_WE_ML_docker: creating images of semantic models, preprocessing methods and de
 
 ## Requirements
 
+``pipreqs`` - Generate requirements.txt file for any project based on imports
+
+#### Installation
+------------
+    pip install pipreqs
+
+#### Usage
+-----
+    pipreqs /home/project/location
+    Successfully saved requirements file in /home/project/location/requirements.txt
+
+###### requirements  content example : 
+----- 
+```
+  nltk==3.4.5
+  pandas==1.0.1
+  Flask==1.1.1
+  scikit_learn==0.23.2
+  numpy==1.13.3
+```
+###### (PS: if the requirements.txt exits, you have to delete it before) [learn more](https://pypi.org/project/pipreqs/)
+
 | Software  |
 | ----------------- | 
-|    flask, scikit-learn, docker, MQTT, | 
+|    flask, scikit-learn, docker, MQTT, pandas, numpy, nltk | 
 
 ```
 virtualenv --python=python3 env
@@ -20,13 +42,37 @@ cd P_WE_ML_docker
 git init
 git clone https://github.com/adlaneKadri/P_WE_ML_docker.git
 ```
+you find models folder [here](https://drive.google.com/drive/u/1/folders/1onlP1L7H_aPQVRgHr-v5cOGpme0qs9ug), and download it 
 uzip models folder
 ```
-you find it here download it): https://drive.google.com/drive/u/1/folders/1onlP1L7H_aPQVRgHr-v5cOGpme0qs9ug
+
 unzip P_WE_ML/models.zip
 ```
-
+## Tree
+```
+P_WE_ML_docker
+          ├── P_WE_ML
+          │   └── frontend
+          |   └── backend
+          |       └── dataset
+          |       └── ml_hub
+          |           └── decision_tree/
+          |           └── gradient_boosting/
+          |           └── mlp/
+          |           └── random_forest/
+          |       └── preprocessing
+          |           └── processing.py
+          |       └── word_embeding
+          |           └── bow/
+          |           └── tfidf/
+          |   └── utils_
+          |       └── config.py
+          |   └── models
+          ├── docker
+          ├── P_WE_ML_docker
+```
 ## How to use ?
+#### P_WE_ML part
 to run the frontend 
 ```
 cd frontend
