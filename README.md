@@ -37,8 +37,12 @@ pip install -r requirements.txt
 
 ## first of all, clone the project 
 ```
-git init
+cd 
+mkdir docker_project
+cd docker_project
+git init 
 git clone https://github.com/adlaneKadri/P_WE_ML_docker.git
+cd P_WE_ML_docker
 ```
 you find models folder [here](https://drive.google.com/drive/u/1/folders/1onlP1L7H_aPQVRgHr-v5cOGpme0qs9ug), and download it 
 uzip models folder
@@ -67,7 +71,7 @@ P_WE_ML_docker
           |       └── config.py
           |   └── models
           ├── docker
-          ├── P_WE_ML_docker
+          └── P_WE_ML_docker
 ```
 ## How to use ?
 #### P_WE_ML part
@@ -106,13 +110,13 @@ python3 decision_tre.py
 Web application 
 ```
 cd frontend
-sudo docker build -t web:v1 . 
+sudo docker build -t web:1.0.0 . 
 
-sudo docker run -v /mypath_to_docker_project/P_WE_ML_docker/docker/models:/app/models -v /mypath_to_docker_project/P_WE_ML_docker/docker/utils_:/app/utils_ -p 5000:5000 web:v1
+sudo docker run -v /mypath_to_docker_project/P_WE_ML_docker/docker/models:/app/models -v /mypath_to_docker_project/P_WE_ML_docker/docker/utils_:/app/utils_ -p 5000:5000 web:1.0.0
 ```
 > ON your browser : 
 ```
-http://127.0.0.1:5000/
+http://0.0.0.0:5000/
 ```
 
 Data preprocessing
