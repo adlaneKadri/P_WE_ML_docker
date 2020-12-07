@@ -1,7 +1,7 @@
 import nltk
 import os
 import sys
-#sys.path.insert(1, "../all_functions")
+#sys.path.insert(1, "../utils_")
 
 import warnings
 warnings.simplefilter(action='ignore')
@@ -25,6 +25,7 @@ def process():
 	if request.method=='POST':
 		var = request.form
 		response = prediction(var['chaine'])
+		print(response)
 		if response == 0 :
 			response = '<img class="mb-4" width="72" height="72" src="https://cdn.shopify.com/s/files/1/1061/1924/products/Sad_Face_Emoji_large.png?v=1571606037"/>'
 		else: 
@@ -68,4 +69,4 @@ def prediction(line):
 
 port = int(os.environ.get("PORT", 5000))
 if __name__ == '__main__' : 
-	app.run(debug=True, host='127.0.0.1',port=port)
+	app.run(debug=True, host='0.0.0.0',port=port)

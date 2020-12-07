@@ -10,6 +10,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 import pickle
 
+nltk.download('wordnet')
+nltk.download('stopwords')
+
 def remove_empty_words_1(dataset):
     for i in range(dataset.shape[0]):
     	review= dataset["reviews"][i]
