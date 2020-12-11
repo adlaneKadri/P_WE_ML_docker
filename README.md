@@ -144,3 +144,45 @@ sudo docker build -t decision_tree:v1 .
 
 sudo docker run -v /mypath_to_docker_project/P_WE_ML_docker/docker/backend/dataset:/app/dataset -v /mypath_to_docker_project/P_WE_ML_docker/docker/models:/app/models  -v /mypath_to_docker_project/P_WE_ML_docker/docker/utils_:/app/utils_  decision_tree:v1
 ```
+
+
+#### Version with MQTT
+
+
+Web application 
+```
+cd frontend
+sudo docker build -t web:1.0.0 . 
+
+sudo docker run -v /mypath_to_docker_project/P_WE_ML_docker/docker/models:/app/models -v /mypath_to_docker_project/P_WE_ML_docker/docker/utils_:/app/utils_   -v  /mypath_to_docker_project/logs:/app/logs -p 5000:5000 web:1.0.0
+```
+> ON your browser : 
+```
+http://0.0.0.0:5000/
+```
+
+Data preprocessing
+```
+cd backend/preprocessing
+
+sudo docker build -t processing:v1 . 
+
+sudo docker run -v /mypath_to_docker_project/backend/dataset:/app/dataset -v /mypath_to_docker_project/utils_:/app/utils_  -v  /mypath_to_docker_project/logs:/app/logs processing:v1
+```
+
+Word embeding (for example tfidf)
+```
+cd backend/tfidf
+sudo docker build -t tfidf:v1 . 
+
+sudo docker run -v /mypath_to_docker_project/backend/dataset:/app/dataset -v /mypath_to_docker_project/models:/app/models  -v /mypath_to_docker_project/utils_:/app/utils_  -v  /mypath_to_docker_project/logs:/app/logs tfidf:v1
+```
+
+Machine learning model (for example logistic Regrission)
+```
+cd backend/ml_hub/logistic_regrission
+
+sudo docker build -t logisticRegrission:v1 . 
+
+sudo docker run -v /mypath_to_docker_project/backend/dataset:/app/dataset -v /mypath_to_docker_project/models:/app/models  -v /mypath_to_docker_project/utils_:/app/utils_  -v  /mypath_to_docker_project/logs:/app/logs  logisticRegrission:v1
+```
