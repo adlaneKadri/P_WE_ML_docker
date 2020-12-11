@@ -147,7 +147,7 @@ sudo docker run -v /mypath_to_docker_project/P_WE_ML_docker/docker/backend/datas
 
 
 #### Version with MQTT
-- please create 2 folder (mP_WE_ML_docker/docker/models , P_WE_ML_docker/docker/logs) 
+- please create 2 folder (/mypath_to_docker_project/P_WE_ML_docker/docker/models , /mypath_to_docker_project/P_WE_ML_docker/docker/logs) 
 ```
 ```
 Web application 
