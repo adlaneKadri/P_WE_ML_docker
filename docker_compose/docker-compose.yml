@@ -1,0 +1,54 @@
+version: '3'
+services:
+  processing:
+    build: ./backend/preprocessing
+    #image : processing:v1
+    volumes:
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/backend/dataset:/app/dataset
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/utils_:/app/utils_
+
+  tfidf:
+    build: ./backend/word_embeding/tfidf
+    #image : tfidf:v1
+    volumes:
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/models:/app/models
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/utils_:/app/utils_
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/backend/dataset:/app/dataset
+    depends_on:
+      - processing
+  
+  decision_tree:
+    build: ./backend/ml_hub/decision_tree
+    #image: decision_tree:v1
+    volumes:
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/models:/app/models
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/utils_:/app/utils_
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/backend/dataset:/app/dataset
+    depends_on:
+      - processing
+      - tfidf
+  
+  gradient_boosting:
+    build: ./backend/ml_hub/random_forest
+    #image: gradient_boosting:v1
+    volumes:
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/models:/app/models
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/utils_:/app/utils_
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/backend/dataset:/app/dataset
+    depends_on:
+      - processing
+      - tfidf
+  
+  web:
+    build: ./frontend
+    #image : web:version_1
+    ports:
+      - "5000:5000"
+    volumes:
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/models:/app/models
+      - /home/adlan/Music/university/paris8/docker_project/P_WE_ML_docker/docker/utils_:/app/utils_
+    depends_on:
+      - processing
+      - tfidf
+      - gradient_boosting
+      - decision_tree
