@@ -71,6 +71,7 @@ P_WE_ML_docker
           |       └── config.py
           |   └── models
           ├── docker
+          ├── docker-compse
           └── P_WE_ML_docker
 ```
 ## How to use ?
