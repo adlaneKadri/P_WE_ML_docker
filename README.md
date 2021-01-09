@@ -70,6 +70,7 @@ P_WE_ML_docker
           |   └── utils_
           |       └── config.py
           |   └── models
+          |   └── logs
           ├── docker
           ├── docker-compse
           └── P_WE_ML_docker
