@@ -73,7 +73,8 @@ P_WE_ML_docker
           |   └── logs
           ├── docker
           ├── docker-compse
-          └── P_WE_ML_docker
+          ├── P_WE_ML_docker
+          └── Vagrantfile
 ```
 ## How to use ?
 #### P_WE_ML part
@@ -190,4 +191,18 @@ cd backend/ml_hub/logistic_regrission
 sudo docker build -t logisticRegrission:v1 . 
 
 sudo docker run -v /mypath_to_docker_project/backend/dataset:/app/dataset -v /mypath_to_docker_project/models:/app/models  -v /mypath_to_docker_project/utils_:/app/utils_  -v  /mypath_to_docker_project/logs:/app/logs  logisticRegrission:v1
+```
+
+#### Vagrant 
+To run vagrant  (we are using ubuntu20 version in Vagrantfile configuration)
+```
+vagrant up
+```
+To destroy the current machine with all params 
+```
+vagrant destroy
+```
+To access in VM with ssh 
+```
+vagrant ssh
 ```
